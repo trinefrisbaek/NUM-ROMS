@@ -7,6 +7,6 @@ gfortran -c -I/usr/local/include -L/usr/local/lib/ mynetcdf.f90 -lnetcdff
 gfortran -c copepods.f90 diatoms.f90 diatoms_simple.f90 generalists_csp.f90 generalists.f90 NUMmodel.f90 NUMmodeltest.f90
 gfortran -shared -fPIC -I/usr/local/include -L/usr/local/lib/ -o libnum.so *.f90 -lnetcdff
 echo "move lib to upwelling folder .."
-cp libnum.so ../../../../upwelling_Full
+cp libnum.so ../../../../NUM-ROMS-eddies
 echo "done!"
 
