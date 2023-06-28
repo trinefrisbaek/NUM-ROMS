@@ -1,0 +1,140 @@
+!                                                                       !           
+! ======================================================================!
+! Input parameters for NUM model generalists                            !
+! ======================================================================!
+! This file contains the input parameters for the NUM Model.            !
+! The parameters are read in in the different initialization            !
+! routines with a call to read_namelist(). The file contains several    !
+! different namelists initialized by                                    !
+!       &input_namelist                                                 !
+!and ended by                                                           !
+!       /                                                               !   
+! Comments can be added with an exclamation mark (!)                    !
+! A descrition of each parameter is provided alongside the parameter    !
+! along with the units in square brackets ([unit]). A glossary is found !
+! at the end of the file where standard values for each parameter is    !
+! given in curly brackets ({standard value}).                           !
+!                                                                       !
+!***********************************************************************!
+!
+! General parameters
+! ==================
+&input_general
+!
+     rhoCN = 5.69841315760386
+
+! Variables for HTL mortalities:
+
+     fracHTL_to_N = 0.654363746590917
+!	  fracHTL_to_POM = 0.5          ! Another half is fecal pellets that are routed back to the largest POM size class
+/
+!
+! Generalists
+! ===========
+&input_generalists
+! This is the input parameters for the generalists. They are read
+! in in the initGeneralists subroutine in generalists.f90
+
+!
+! General
+!
+      mMinGeneralist = 3.1623d-9    ! Description [mug C]
+      mMaxGeneralist = 10.0	    ! Description [mug C]
+      rhoval = 0.493231572937737
+!
+! Light uptake
+!
+      epsilonL = 0.737731361059188
+      alphaL = 1.18968050537396
+      rLstar = 5.7608738175632
+!
+! Dissolved nutrient uptake:
+      alphaN = 0.867847554633089
+      rNstar = 2.10149439760787
+!
+! Phagotrophy
+!
+      epsilonF = 0.780506696532962
+      alphaF = 0.229881669815572
+      cF = 43.347413906073
+      beta = 616.58731470856
+      sigma = 1.36716054387757
+!
+! Metabolism
+!
+      cLeakage = 0.0302684315872123
+      delta = 0.05                  ! Thickness of cell wall [mum]
+      alphaJ = 1.17688493804921
+      cR = 0.144354117070844
+!
+! Biogeo:
+!
+      remin = 0.0                   ! Fraction of mortality losses reminerilized to DOC
+      remin2 = 0.789814642393203
+      reminF = 0.492973448883803
+
+
+/
+
+!
+! POM
+! ========
+&input_POM
+      remPOM = 0.00410735361639539
+      mPOMmin = 1d-9
+      vel1 = 157.493846793965
+      vel2 = 0.2
+
+/
+!
+! Spectrum
+! ========
+&input_spec
+      mort2val = 0.00256440952689639
+
+/
+
+!
+! Copepods
+! ========
+&input_copepods
+
+      epsilonF = 0.17964
+      epsilonR = 0.25               ! Reproductive efficiency
+      beta = 603.0823
+      sigma = 0.93289
+      alphaF = 0.42551
+      q = 0.75                      ! Exponent of clerance rate
+      h = 1.37                      ! Factor for maximum ingestion rate
+      hExponent = 0.75              ! Exponent for maximum ingestions rate
+      kBasal = 0.01! 0.006          ! Factor for basal metabolism. This value represents basal
+      kSDA = 0.16                   ! Factor for SDA metabolism (Serra-Pompei 2020). This value assumes that the
+      p = 0.75                      ! Exponent for respiration
+      AdultOffspring = 100.
+      remin = 0.0                   ! fraction of mortality losses reminerilized to N and DOC
+
+                                                                       
+! ======================================================================!
+! Parameter glossary                                                    !
+! ======================================================================!
+
+! Generalists
+! ===========
+
+! Light uptake
+      epsilonL = 0.29189
+
+! Metabolism
+!      delta: The constant is increased a bit to limit the lower cell size
+
+!
+! Copepods
+! ========
+!      kBasal = Factor for basal metabolism {0.006}. This value represents basal metabolism at 
+!               starvation. Following Kiørboe (1985) the starvation metabolism is approximatly
+!               0.2*0.18=0.036 times the maximum metabolism (kSDA). Increased to 0.01 to avoid 
+!               too long transients. 
+
+!      kSDA = Factor for SDA metabolism (Serra-Pompei 2020) {0.16}. This value assumes that the 
+!             data in Kiørboe and Hirst (2014) are for fully fed copepods.
+/
